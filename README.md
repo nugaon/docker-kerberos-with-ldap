@@ -1,7 +1,7 @@
 ## Docker kerberos
 This image is for testing purposes for Kerberos/LDAP environments. 
 With this Kerberos image you can initialize an Ubuntu based Kerberos server with LDAP connections.
-The whole project based on `mrenouf/docker-images` repository, but this codebase not compatible with that.
+The whole project based on `mrenouf/docker-images` repository, but this codebase is not compatible with that.
 
 #### Quick start
 ```

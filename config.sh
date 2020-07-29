@@ -108,9 +108,9 @@ EOF
   echo "admin@$REALM *" > /etc/krb5kdc/kadm5.acl
 }
 
-mkdir -p /var/log/kerberos
-
 if [ ! -f /kerberos_initialized ]; then
+  mkdir -p /var/log/kerberos
+
   create_config
   init_ldap
   create_admin_user

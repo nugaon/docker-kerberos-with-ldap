@@ -4,12 +4,12 @@ sleep 10
 
 [[ "TRACE" ]] && set -x
 
-: ${REALM:=AMAZON}
-: ${DOMAIN_REALM:=amazon}
+: ${REALM:=EXAMPLE.COM}
+: ${DOMAIN_REALM:=example.com}
 : ${KERB_MASTER_KEY:=masterkey}
 : ${KERB_ADMIN_USER:=admin}
 : ${KERB_ADMIN_PASS:=admin}
-: ${SEARCH_DOMAINS:=krb.amazon}
+: ${SEARCH_DOMAINS:=example.com}
 : ${LDAP_DC:=dc=example,dc=com}
 : ${LDAP_USER:=admin}
 : ${LDAP_PASS:=admin}
@@ -91,13 +91,13 @@ EOF
 }
 
 start_kdc() {
-  krb5kdc start
-  kadmind
+  service krb5-kdc start
+  service krb5-admin-server start
 }
 
 restart_kdc() {
-  krb5kdc restart
-  kadmind restart
+  service krb5-kdc restart
+  service krb5-admin-server restart
 }
 
 create_admin_user() {
@@ -105,7 +105,7 @@ create_admin_user() {
 $LDAP_PASS
 $LDAP_PASS
 EOF
-  echo "*/admin@$REALM *" > /etc/krb5kdc/kadm5.acl
+  echo "admin@$REALM *" > /etc/krb5kdc/kadm5.acl
 }
 
 mkdir -p /var/log/kerberos
